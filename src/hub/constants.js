@@ -29,7 +29,7 @@ export default {
     'birds-of-fire': {
       name: 'Birds of Fire',
       slug: 'birds-of-fire',
-      stories: ['sym-4-6'],
+      stories: ['fire1'],
     },
     'symmetry-fair': {
       name: 'Symmetry Fair',

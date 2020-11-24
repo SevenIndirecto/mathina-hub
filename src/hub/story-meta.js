@@ -15,4 +15,12 @@ export default [
       { title: 'Demo Chapter', slug: 'demo-chapter' },
     ]
   },
+  {
+    title: 'The firebird trainer',
+    slug: 'the-firebird-trainer',
+    id: 'fire1',
+    chapters: [
+      { title: 'ch1', slug: 'ch1' },
+    ]
+  },
 ];
