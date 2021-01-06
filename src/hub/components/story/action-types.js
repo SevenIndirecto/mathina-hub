@@ -24,6 +24,16 @@ export class BackgroundAction extends Action {
   }
 }
 
+export class MidgroundAction extends Action {
+  constructor({ src, style, ...rest }) {
+    super(rest);
+    this.style = style;
+    this.type = 'midground';
+    this.src = src;
+    this.autoProgress = true;
+  }
+}
+
 export class ImageAction extends Action {
   constructor({ id, src, align, style, autoProgress, ...rest }) {
     super(rest);
@@ -88,6 +98,7 @@ export class ClearImageAction extends Action {
 export class ActionFactory {
   static classes = {
     BackgroundAction,
+    MidgroundAction,
     ImageAction,
     SceneTextAction,
     DialogAction,

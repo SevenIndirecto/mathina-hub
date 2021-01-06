@@ -8,6 +8,12 @@ export default [
     ageMeta: AGE_GROUPS['0'],
   },
   {
+    title: 'Mathina toys parallax',
+    slug: 'mathina-toys-parallax',
+    id: 'sym-parallax',
+    ageMeta: AGE_GROUPS['0'],
+  },
+  {
     title: 'Demo Story',
     slug: 'demo-story-url-path',
     id: 'demo-story',

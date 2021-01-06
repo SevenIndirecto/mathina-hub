@@ -19,7 +19,6 @@
       <slot name="mid" />
     </ParallaxElement>
     <ParallaxElement
-      class="front"
       :offset="offsetFront"
     >
       <slot name="front" />
@@ -73,7 +72,7 @@ export default {
 <style scoped>
 
 .parallax-container {
-  position: relative;
+  position: absolute;
   width: 100%;
   height: 100%;
 
@@ -85,9 +84,6 @@ export default {
 
 .front {
   position: absolute;
-  bottom: -5%;
-  left: -2%;
-  right: -2%;
 }
 
 .mid {

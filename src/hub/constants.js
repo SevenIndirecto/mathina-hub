@@ -29,7 +29,7 @@ export default {
       id: 'symmetry-fair',
       name: 'Symmetry Fair',
       slug: 'symmetry-fair',
-      stories: ['sym-4-6'],
+      stories: ['sym-4-6', 'sym-parallax'],
       colorScheme: 'purple lighten-1'
     }
   },

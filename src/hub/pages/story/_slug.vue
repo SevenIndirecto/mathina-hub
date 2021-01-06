@@ -1,10 +1,13 @@
 <template>
   <GameView>
-    <div
+    <ParallaxContainer
       ref="storyRoot"
       class="root"
     >
-      <div class="backgrounds">
+      <ParallaxElement
+        :offset="20"
+        class="backgrounds"
+      >
         <div class="backgrounds__images">
           <img
             v-for="bg in backgrounds"
@@ -13,8 +16,24 @@
             :style="bg.style"
           >
         </div>
-      </div>
-      <div class="images-wrapper">
+      </ParallaxElement>
+      <ParallaxElement
+        :offset="10"
+        class="backgrounds mid"
+      >
+        <div class="backgrounds__images">
+          <img
+            v-for="bg in midgrounds"
+            :key="bg.src"
+            :src="bg.src"
+            :style="bg.style"
+          >
+        </div>
+      </ParallaxElement>
+      <ParallaxElement
+        :offset="0"
+        class="images-wrapper"
+      >
         <transition-group
           appear
           name="fade"
@@ -25,12 +44,11 @@
             :id="image.id"
             :key="image.src"
             :src="image.src"
-            :class="`images-wrapper__image--${image.position.horizontal} images-wrapper__image--vertical-${image.position.vertical}`"
             class="images-wrapper__image"
             :style="image.style"
           >
         </transition-group>
-      </div>
+      </ParallaxElement>
       <div class="text-wrapper mt-16">
         <div
           v-if="isDialogMode"
@@ -147,7 +165,7 @@
           All done!
         </v-btn>
       </div>
-    </div>
+    </ParallaxContainer>
   </GameView>
 </template>
 
@@ -160,6 +178,7 @@ import GameView from '~/components/GameView';
 import {
   ActionFactory,
   BackgroundAction,
+  MidgroundAction,
   ImageAction,
   SceneTextAction,
   DialogAction,
@@ -167,12 +186,16 @@ import {
   ClearImageAction,
   AnimationAction,
 } from '~/components/story/action-types';
+import ParallaxContainer from '~/components/parallax/ParallaxContainer';
+import ParallaxElement from '~/components/parallax/ParallaxElement';
 
 const BACK = 'back';
 const NEXT = 'next';
 
 export default {
   components: {
+    ParallaxElement,
+    ParallaxContainer,
     GameView,
     StoryDialog,
   },
@@ -199,6 +222,7 @@ export default {
         current: null,
       },
       backgrounds: [],
+      midgrounds: [],
       devDirection: this.next,
       activeDirection: NEXT,
       showGameDialog: false,
@@ -306,6 +330,10 @@ export default {
         this.setBackground(this.action);
         // auto progress
         this.devDirection();
+      } else if (this.action instanceof MidgroundAction) {
+        this.setMidground(this.action);
+        // auto progress
+        this.devDirection();
       } else if (this.action instanceof ImageAction) {
         if (this.activeDirection === BACK) {
           this.clearImage({ src: this.action.src });
@@ -346,6 +374,11 @@ export default {
       const bgs = this.backgrounds.filter(bg => bg.src !== path);
       this.backgrounds = [...bgs, { src: path, style }];
     },
+    setMidground({ src, style }) {
+      const path = `${this.imgRoot}/bg/${src}`;
+      const bgs = this.midgrounds.filter(bg => bg.src !== path);
+      this.midgrounds = [...bgs, { src: path, style }];
+    },
     setImage({ id, src, align = 'center', style = '' }) {
       const path = `${this.imgRoot}/${src}`;
       const images = this.images.filter(img => img.src !== path && (!img.id || img.id !== id));
@@ -379,6 +412,7 @@ export default {
   height: 100%;
   width: 100%;
   position: relative;
+  overflow: hidden;
 }
 
 .images-wrapper {
@@ -390,7 +424,6 @@ export default {
   &__image {
     max-width: 450px;
     position: absolute;
-    top: 30%;
 
     &--left {
       left: 1rem;

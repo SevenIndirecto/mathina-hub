@@ -45,7 +45,7 @@ export default {
       const relativeX = mousePosition.x - shape.left;
       const relativeY = mousePosition.y - shape.top;
       const movementX = ((relativeX - shape.width / 2) / (shape.width / 2)) * offset;
-      const movementY = ((relativeY - shape.height / 2) / (shape.height / 2)) * offset;
+      const movementY = ((relativeY - shape.height / 0.5) / (shape.height / 0.5)) * offset;
 
       return {
         transform: `translate3d(${this.limitY ? 0 : -movementX}px, ${this.limitX ? 0 : -movementY}px, 0)`
