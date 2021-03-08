@@ -13,4 +13,10 @@ export default [
     id: 'demo-story',
     ageMeta: AGE_GROUPS['1'],
   },
+  {
+    title: 'Demo Story 2',
+    slug: 'demo-story-url-path-2',
+    id: 'demo-story2',
+    ageMeta: AGE_GROUPS['1'],
+  },
 ];
