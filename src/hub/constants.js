@@ -8,7 +8,7 @@ export default {
       id: 'island',
       name: 'Buccaneer Island',
       slug: 'island',
-      stories: ['sym-4-6', 'demo-story'],
+      stories: ['sym-4-6', 'demo-story', 'demo-story2'],
       colorScheme: 'blue darken-1',
     },
     'logicity': {
